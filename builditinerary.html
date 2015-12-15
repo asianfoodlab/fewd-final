@@ -1,0 +1,117 @@
+<!doctype HTML>
+<html>
+<head>
+	<title>Travel Itinerary Builder</title>
+	<link rel="stylesheet" href="style.css" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+</head>
+<body>
+	<div class="header">
+      	<div class="logo">
+          	<p>Logo</p>
+     	</div>
+      	<div class="topNav">
+          	<ul>
+	              <li><a href="index.html">Home</a></li>
+	              <li><a href="about.html">About</a></li>
+	              <li><a href="myitineraries.html">My Itineraries</a></li>
+	              <li><a href="signin.html">Sign In</a></li>
+          	</ul>
+      	</div>
+      	<div id="header">
+      		<h1>Plan your Trip</h1>'
+      	</div>
+	  	<div id="itineraryName">
+	  		<input type="text" size="30" placeholder="Enter a name for your new itinerary" required>
+	  	</div>
+	  <!-- 	<div id="searchItems">
+	  		<input id="searchTerm" type="text" class="search" size="80" placeholder="Search for activities, transportation, lodging, restaurants ..." required>
+	    	<input id="searchButton" type="button" class="button" value="Search">
+	  	</div> -->
+	  	<div id="addItem">
+	  		<select id="itemType">
+			  <option value="Accommodation">Accommodation</option>
+			  <option value="Activity">Activity</option>
+			  <option value="Restaurant">Restaurant</option>
+			  <option value="Transportation">Transportation</option>
+			</select>
+	  		<input id="itemDescription" type="text" size="30" placeholder="Enter description" required>
+	  		<input id="itemAddress" type="text" size="30" placeholder="Enter address">
+	  		<input id="itemHours" type="text" size="30" placeholder="Enter hours of operation">
+	  		<input id="itemPrice" type="text" size="30" placeholder="Enter price">
+	    	<input id="addToPlanButton" type="button" value="Add to Plan">
+<!-- 	    	<input id="add Item" type="button" class="button" value="Search Yelp">
+ -->	  	</div>
+      	<div id="mainTable">
+      		<p id="planTable"></p>
+
+	      	<script type="text/javascript">
+		  //     	$(function(){
+				// 	var searchTerm;
+				// 	$("#searchButton").click(function(){
+				// 		searchTerm = $("#searchTerm")[0].value;
+				// 		console.log("searchTerm", searchTerm);
+
+				// 		$.get("https://api.yelp.com/v2/search?term="+searchTerm+"&location=San+Francisco", function(data){
+				// 			console.log("data", data);	
+				// 		});
+
+				// 	});	
+
+				// });
+
+	    		$(function(){
+					var itemType;
+					var description;
+					var address;
+					var hours;
+					var price;
+					$("#addToPlanButton").click(function(){
+						itemType = $('#itemType').val();
+						description = $("#itemDescription")[0].value;
+						address = $("#itemAddress")[0].value;
+						hours = $("#itemHours")[0].value;
+						price = $("#itemPrice")[0].value;
+						console.log("description", description);
+						console.log("itemType", itemType);
+						console.log("address", address);
+						$('#planTable').append("<p>"+itemType+ " " +description+" " +address+ " " +hours+ " " +price+ "</p>");
+
+						$('#itemType').val('');
+						$("#itemDescription")[0].value = '';
+						$("#itemAddress")[0].value='';
+						$("#itemHours")[0].value='';
+						$("#itemPrice")[0].value='';
+
+						// $.get("https://api.yelp.com/v2/search?term="+searchTerm+"&location=San+Francisco", function(data){
+						// 	console.log("data", data);	
+						//});
+
+					});	
+
+				});
+
+			// function addTodoItem(){
+			// 	console.log("Inside function");
+			// 	event.preventDefault();
+			// 	var li = document.createElement("li");
+			// 	var label = document.createElement("label");
+			// 	var checkbox = document.createElement("input");
+			// 	checkbox.type = "checkbox";
+			// 	var item = document.getElementById("item");
+			// 	var list = document.getElementById("todolist");
+				
+			// 	var textNode = document.createTextNode(item.value);
+			// 	label.appendChild(textNode);
+			// 	li.appendChild(label);
+			// 	list.appendChild(li);
+			// 	label.appendChild(checkbox);
+			// 	item.value = "";
+			// };
+
+      	</script>
+      	</div>
+    </div>
+</body>
+</html>
