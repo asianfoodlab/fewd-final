@@ -20,16 +20,14 @@
           	</ul>
       	</div>
       	<div id="header">
-      		<h1>Plan your Trip</h1>'
+      		<h1>Plan your Trip</h1>
       	</div>
 	  	<div id="itineraryName">
 	  		<input type="text" size="30" placeholder="Enter a name for your new itinerary" required>
 	  	</div>
-	  <!-- 	<div id="searchItems">
-	  		<input id="searchTerm" type="text" class="search" size="80" placeholder="Search for activities, transportation, lodging, restaurants ..." required>
-	    	<input id="searchButton" type="button" class="button" value="Search">
-	  	</div> -->
-	  	<div id="addItem">
+	  
+	  	<div id="addManualItem">
+	  		<h3>Manual Add</h3>
 	  		<select id="itemType">
 			  <option value="Accommodation">Accommodation</option>
 			  <option value="Activity">Activity</option>
@@ -41,25 +39,42 @@
 	  		<input id="itemHours" type="text" size="30" placeholder="Enter hours of operation">
 	  		<input id="itemPrice" type="text" size="30" placeholder="Enter price">
 	    	<input id="addToPlanButton" type="button" value="Add to Plan">
-<!-- 	    	<input id="add Item" type="button" class="button" value="Search Yelp">
- -->	  	</div>
+ 	    	
+		</div>
+
+		<div id="addYelpItem">
+	  		<h3>Search Yelp</h3>
+	  		<input id="searchTerm" type="text" size="80" placeholder="Search for activities, transportation, lodging, restaurants ..." required>
+	    	<input id="searchButton" type="button" value="Search">
+	  	</div> 
+		</div>
+
       	<div id="mainTable">
       		<p id="planTable"></p>
 
 	      	<script type="text/javascript">
-		  //     	$(function(){
-				// 	var searchTerm;
-				// 	$("#searchButton").click(function(){
-				// 		searchTerm = $("#searchTerm")[0].value;
-				// 		console.log("searchTerm", searchTerm);
+		      	$(function(){
+					var searchTerm;
+					$("#searchButton").click(function(){
+						searchTerm = $("#searchTerm")[0].value;
+						console.log("searchTerm", searchTerm);
 
-				// 		$.get("https://api.yelp.com/v2/search?term="+searchTerm+"&location=San+Francisco", function(data){
-				// 			console.log("data", data);	
-				// 		});
+						$.get("https://api.yelp.com/v2/search?term="+searchTerm+"&location=San+Francisco"&oauth_consumer_key=BpEX5TyDuwi9wsVZXENU8g&oauth_token=nnch734d00sl2jdk&oauth_signature_method=HMAC-SHA1&oauth_signature=tR3%2BTy81lMeYAr%2FFid0kMTYa%2FWM%3D&oauth_timestamp=1191242096&oauth_nonce=kllo9940pd9333jh&oauth_version=1.0, function(data){
+							console.log("data", data);	
+						});
 
-				// 	});	
+					});	
 
-				// });
+				});
+
+
+				Consumer Key BpEX5TyDuwi9wsVZXENU8g 
+
+Consumer Secret kT7Q5fYqA3qTF0ll8JDVEDWnc-A 
+
+Token uUR_Rky_hODWwWVrPYBJEu2TETN8gfdX
+
+Token Secret 4lsUndzpyPzQCDcKMBwnRHipP9s
 
 	    		$(function(){
 					var itemType;
