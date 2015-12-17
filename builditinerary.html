@@ -3,9 +3,13 @@
 <head>
 	<title>Travel Itinerary Builder</title>
 	<link rel="stylesheet" href="style.css" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
-	<script src="node_modules/oauth-signature/dist/oauth-signature.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	// <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
+	<script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
+    <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
+	<!-- <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
+	<script src="node_modules/oauth-signature/dist/oauth-signature.js"></script> -->
 </head>
 <body>
 	<div class="header">
@@ -26,7 +30,9 @@
 	  	<div id="itineraryName">
 	  		<input type="text" size="30" placeholder="Enter a name for your new itinerary" required>
 	  	</div>
-	  
+	</div> <!-- header and nav div -->
+	 
+	<div id="addItems">
 	  	<div id="addManualItem">
 	  		<h3>Manual Add</h3>
 	  		<select id="itemType">
@@ -39,84 +45,109 @@
 	  		<input id="itemAddress" type="text" size="30" placeholder="Enter address">
 	  		<input id="itemHours" type="text" size="30" placeholder="Enter hours of operation">
 	  		<input id="itemPrice" type="text" size="30" placeholder="Enter price">
-	    	<input id="addToPlanButton" type="button" value="Add to Plan">
- 	    	
-		</div>
+	    	<input id="addToPlanButton" type="button" value="Add to Plan"> 	 	
+	    </div>
 
 		<div id="addYelpItem">
 	  		<h3>Search Yelp</h3>
 	  		<input id="searchTerm" type="text" size="80" placeholder="Search for activities, transportation, lodging, restaurants ..." required>
-	    	<input id="searchButton" type="button" value="Search">
+	    	<input id="searchButton" type="button" size="30" value="Search">
 	  	</div> 
-		</div>
 
-      	<div id="mainTable">
-      		<p id="planTable"></p>
+	</div> <!-- addItemsdiv -->
+
+	<div id="yelpSearchResults">
+		<p id="yelpSearchItem"></p>
+	</div>
+
+  	<div id="mainTable">
+  		<p id="planTable"></p>
+  	</div>
 
 	      	<script type="text/javascript">
 		      	$(function(){
-					var searchTerm;
-					$("#searchButton").click(function(){
-						searchTerm = $("#searchTerm")[0].value;
+					$("#searchButton").click(function(event){
+						var searchTerm;
+						event.preventDefault();
+						searchTerm = $("#searchTerm").val();
 						console.log("searchTerm", searchTerm);
 
-						// $.get("https://api.yelp.com/v2/search?term="+searchTerm+"&location=San+Francisco"&oauth_consumer_key=BpEX5TyDuwi9wsVZXENU8g&oauth_token=nnch734d00sl2jdk&oauth_signature_method=HMAC-SHA1&oauth_signature=tR3%2BTy81lMeYAr%2FFid0kMTYa%2FWM%3D&oauth_timestamp=1191242096&oauth_nonce=kllo9940pd9333jh&oauth_version=1.0, function(data){
-						// 	console.log("data", data);	
-						// });
+						var auth = {
+			                //
+			                // Update with your auth tokens.
+			                //
+			                consumerKey : "Ad52mmK6JCoR16xKSjLwsA",
+                			consumerSecret : "N3iLsvIdGq-mc825A5U8ySr3Swk",
+			                accessToken : "9-dvvC5RFpFJmpMXJXg0Jobl5VPLW3Ot",
+			                // This example is a proof of concept, for how to use the Yelp v2 API with javascript.
+			                // You wouldn't actually want to expose your access token secret like this in a real application.
+			                accessTokenSecret : "66AQccnI59ezaHGMpiE-sNNz_8s",
+			                serviceProvider : {
+			                    signatureMethod : "HMAC-SHA1"
+			                }
+			            }; //var auth
 
-						var httpMethod = 'GET',
-	    				url = 'https://api.yelp.com/v2/search?term="+searchTerm+"&location=San+Francisco',
-						parameters = {
-					        oauth_consumer_key : 'BpEX5TyDuwi9wsVZXENU8g',
-					        oauth_token : 'uUR_Rky_hODWwWVrPYBJEu2TETN8gfdX',
-					        oauth_nonce : 'kllo9940pd9333jh',
-					        oauth_timestamp : '1191242096',
-					        oauth_signature_method : 'HMAC-SHA1',
-					        oauth_version : '1.0',
-					        term : searchTerm,
-					        location : 'San Francisco'
-					    },
-					    consumerSecret = 'kT7Q5fYqA3qTF0ll8JDVEDWnc-A',
-					    tokenSecret = '4lsUndzpyPzQCDcKMBwnRHipP9s',
-					    // generates a RFC 3986 encoded, BASE64 encoded HMAC-SHA1 hash
-					    encodedSignature = oauthSignature.generate(httpMethod, url, parameters, consumerSecret, tokenSecret),
-					    // generates a BASE64 encode HMAC-SHA1 hash
-					    signature = oauthSignature.generate(httpMethod, url, parameters, consumerSecret, tokenSecret,
-					        { encodeSignature: false});
-					    console.log("encodedSignature", encodedSignature);
-					    console.log("signature", signature);
+			            var near = 'San+Francisco';
+			            var sort = 2;
+			            var limit = 5;
 
-					    var nonce = function(length) {
-						    var text = "";
-						    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-						    for(var i = 0; i < length; i++) {
-						        text += possible.charAt(Math.floor(Math.random() * possible.length));
-						    }
-						    return text;
-						    console.log("text", text);
-						};
+			            var accessor = {
+			                consumerSecret : auth.consumerSecret,
+			                tokenSecret : auth.accessTokenSecret
+			            }; //var accessor
 
-						var runNonce = nonce(16);
-						console.log("nonce", runNonce);
+			            parameters = [];
+			            parameters.push(['term', searchTerm]);
+			            parameters.push(['location', near]);
+			            parameters.push(['sort', sort]);
+			            parameters.push(['limit', limit]);
+			            parameters.push(['callback', 'cb']);
+			            parameters.push(['oauth_consumer_key', auth.consumerKey]);
+			            parameters.push(['oauth_consumer_secret', auth.consumerSecret]);
+			            parameters.push(['oauth_token', auth.accessToken]);
+			            parameters.push(['oauth_signature_method', 'HMAC-SHA1']);
+			            // parameters.push(['cll', 37.77493, -122.419415]);
+			     
 
-					    $.get("https://api.yelp.com/v2/search?term="+searchTerm+"
-					    	&location=San+Francisco
-					    	&oauth_consumer_key=BpEX5TyDuwi9wsVZXENU8g&oauth_token=nnch734d00sl2jdk
-					    	&oauth_signature_method=HMAC-SHA1
-					    	&oauth_signature="+encodedSignature+"
-					    	&oauth_timestamp=1191242096
-					    	&oauth_nonce="+runNonce+"
-					    	&oauth_version=1.0", 
-					    	function(data){
-								console.log("data", data);	
-						});
-					    
+			            var message = {
+			                'action' : 'http://api.yelp.com/v2/search',
+			                'method' : 'GET',
+			                'parameters' : parameters
+			            };//var message
+
+			            OAuth.setTimestampAndNonce(message);
+			            OAuth.SignatureMethod.sign(message, accessor);
+
+			            var parameterMap = OAuth.getParameterMap(message.parameters);
+			            console.log(parameterMap);
+
+			            $.ajax({
+			                'url' : message.action,
+			                'data' : parameterMap,
+			                'dataType' : 'jsonp',
+			                'jsonpCallback' : 'cb',
+			                'success' : function(data, textStats, XMLHttpRequest) {
+			                    console.log(data);
+			                    //$("body").append(output);
+			                    for(var i=0; i<5; i++){
+                       		 		console.log('business name', data.businesses[i].name);
+                       		 		console.log('url', data.businesses[i].url);
+
+                        			var businessName = data.businesses[i].name;
+                        			var businessURL = data.businesses[i].url;
+                        			var businessPhone = data.businesses[i].display_phone;
+
+			                    	$('#yelpSearchItem').append("<p><h4>"+businessName+ "</h4>"+businessPhone+ "<br>"+businessURL+"</p><br>");
+			                    	console.log('businessName', businessName);
+			                    	console.log('businessURL', businessURL);
+			                    };//for loop
+
+								$("#searchTerm").val('');
+			                }//success function
+			            });//ajax call
 
 					});	//searchButton function
 
-				});
-
-	    		$(function(){
 					var itemType;
 					var description;
 					var address;
@@ -143,9 +174,63 @@
 						// 	console.log("data", data);	
 						//});
 
-					});	
+					});	//addto plan click function
 
-				});
+				}); //blocking function enclosure
+
+			</script>
+
+						<!-- // // $.get("https://api.yelp.com/v2/search?term="+searchTerm+"&location=San+Francisco"&oauth_consumer_key=BpEX5TyDuwi9wsVZXENU8g&oauth_token=nnch734d00sl2jdk&oauth_signature_method=HMAC-SHA1&oauth_signature=tR3%2BTy81lMeYAr%2FFid0kMTYa%2FWM%3D&oauth_timestamp=1191242096&oauth_nonce=kllo9940pd9333jh&oauth_version=1.0, function(data){
+						// // 	console.log("data", data);	
+						// // });
+
+						// var httpMethod = 'GET',
+	    	// 			url = 'https://api.yelp.com/v2/search?term="+searchTerm+"&location=San+Francisco',
+						// parameters = {
+					 //        oauth_consumer_key : 'BpEX5TyDuwi9wsVZXENU8g',
+					 //        oauth_token : 'uUR_Rky_hODWwWVrPYBJEu2TETN8gfdX',
+					 //        oauth_nonce : 'kllo9940pd9333jh',
+					 //        oauth_timestamp : '1191242096',
+					 //        oauth_signature_method : 'HMAC-SHA1',
+					 //        oauth_version : '1.0',
+					 //        term : searchTerm,
+					 //        location : 'San Francisco'
+					 //    },
+					 //    consumerSecret = 'kT7Q5fYqA3qTF0ll8JDVEDWnc-A',
+					 //    tokenSecret = '4lsUndzpyPzQCDcKMBwnRHipP9s',
+					 //    // generates a RFC 3986 encoded, BASE64 encoded HMAC-SHA1 hash
+					 //    encodedSignature = oauthSignature.generate(httpMethod, url, parameters, consumerSecret, tokenSecret),
+					 //    // generates a BASE64 encode HMAC-SHA1 hash
+					 //    signature = oauthSignature.generate(httpMethod, url, parameters, consumerSecret, tokenSecret,
+					 //        { encodeSignature: false});
+					 //    console.log("encodedSignature", encodedSignature);
+					 //    console.log("signature", signature);
+
+					 //    var nonce = function(length) {
+						//     var text = "";
+						//     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+						//     for(var i = 0; i < length; i++) {
+						//         text += possible.charAt(Math.floor(Math.random() * possible.length));
+						//     }
+						//     return text;
+						//     console.log("text", text);
+						// };
+
+						// var runNonce = nonce(16);
+						// console.log("nonce", runNonce);
+
+					 //    $.get("https://api.yelp.com/v2/search?term="+searchTerm+"
+					 //    	&location=San+Francisco
+					 //    	&oauth_consumer_key=BpEX5TyDuwi9wsVZXENU8g&oauth_token=nnch734d00sl2jdk
+					 //    	&oauth_signature_method=HMAC-SHA1
+					 //    	&oauth_signature="+encodedSignature+"
+					 //    	&oauth_timestamp=1191242096
+					 //    	&oauth_nonce="+runNonce+"
+					 //    	&oauth_version=1.0", 
+					 //    	function(data){
+						// 		console.log("data", data);	
+						// });
+    	
 
 			// function addTodoItem(){
 			// 	console.log("Inside function");
@@ -163,10 +248,8 @@
 			// 	list.appendChild(li);
 			// 	label.appendChild(checkbox);
 			// 	item.value = "";
-			// };
+			// }; -->
 
-      	</script>
-      	</div>
-    </div>
+      
 </body>
 </html>
