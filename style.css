@@ -1,76 +1,202 @@
-.header {
-    width: 100%;
-    /*border: 1px solid black;*/
-    overflow: hidden;
-    margin-bottom: 50px;
+/*
+ * Globals
+ */
+
+/* Links */
+a,
+a:focus,
+a:hover {
+  color: #fff;
 }
 
-.logo {
-    width: 20%;
+/* Custom default button 
+.btn-default,
+.btn-default:hover,
+.btn-default:focus {
+  color: #333;
+  text-shadow: none; /* Prevent inheritence from `body` 
+  background-color: #fff;
+  border: 1px solid #fff;
+}
+*/
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+  height: 100%;
+  /*background-color: #333;*/
+  background: url("images/airport_terminal.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  }
+
+body {
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 3px 7px rgba(0,0,0,.5);
+}
+
+/* Extra markup and styles for table-esque vertical and horizontal centering */
+.site-wrapper {
+  display: table;
+  width: 100%;
+  height: 100%; /* For at least Firefox */
+  min-height: 100%;
+  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+}
+.site-wrapper-inner {
+  display: table-cell;
+  vertical-align: top;
+}
+.cover-container {
+  margin-right: auto;
+  margin-left: auto;
+}
+
+/* Padding for spacing */
+.inner {
+  padding: 30px;
+}
+
+
+/*
+ * Header
+ */
+.masthead-brand {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.masthead-nav > li {
+  display: inline-block;
+}
+.masthead-nav > li + li {
+  margin-left: 20px;
+}
+.masthead-nav > li > a {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+  color: rgba(255,255,255,.75);
+  border-bottom: 2px solid transparent;
+}
+.masthead-nav > li > a:hover,
+.masthead-nav > li > a:focus {
+  background-color: transparent;
+  border-bottom-color: #a9a9a9;
+  border-bottom-color: rgba(255,255,255,.25);
+}
+.masthead-nav > .active > a,
+.masthead-nav > .active > a:hover,
+.masthead-nav > .active > a:focus {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+@media (min-width: 768px) {
+  .masthead-brand {
     float: left;
-    border: 1px solid gray;
-    font-family: Helvetica;
-    padding-top: 21px;
-    padding-bottom: 21px;
-    padding-left: 10px;
-}
-
-.topNav {
-    /*border: 1px solid gray;*/
-    float: left;
-    width: 75%;
-
-}
-
-.topNav ul {
-    font-family: Helvetica;
-    white-space: nowrap;
+  }
+  .masthead-nav {
     float: right;
+  }
 }
 
-.topNav li {
-    list-style-type: none;
-    display: inline-block;
-    font-family: Helvetica;
-    color:#207cca;
-    margin: 21px 50px 21px 50px;
+
+/*
+ * Cover
+ */
+
+.cover {
+  padding: 0 20px;
 }
+.cover .btn-lg {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+ul {
+  list-style-type: none;
+  }
 
 #homeBody {
-    margin-top: 50px;
+    margin-bottom: 15px;
     text-align: center;
-    font-family: Helvetica;
     color: #207cca;
 }
 
+#homeBody h2 {
+  color: #fff;
+}
+
 #homeBodyWelcome {
-    margin-bottom: 50px;
+    padding-top: 150px;
 }
 
 #formHomeSearch {
     width: 800px;
-    margin: 50px auto;
+    margin: 35px auto;
 }
 
 .search {
     padding: 8px 15px;
     background: rgba(50, 50, 50, 0.2);
     border: 0px solid #dbdbdb;
+  }
 
+.social-media-icon {
+    height: 35px;
+    width: 35px;
+  }
+
+/*
+ * Footer
+ */
+
+.mastfoot {
+  color: #999; /* IE8 proofing */
+  color: rgba(255,255,255,.5);
 }
 
-.button {
-    position: relative;
-    padding:6px 15px;
-    left:-8px;
-    border:2px solid #207cca;
-    background-color:#207cca;
-    color:#fafafa;
+
+/*
+ * Affix and center
+ */
+
+@media (min-width: 768px) {
+  /* Pull out the header and footer */
+  .masthead {
+    position: fixed;
+    top: 0;
+  }
+  .mastfoot {
+    position: fixed;
+    bottom: 0;
+  }
+  /* Start the vertical centering */
+  .site-wrapper-inner {
+    vertical-align: middle;
+  }
+  /* Handle the widths */
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 100%; /* Must be percentage or pixels for horizontal alignment */
+  }
 }
 
-.button:hover  {
-    background-color:#fafafa;
-    color:#207cca;
+@media (min-width: 992px) {
+  .masthead,
+  .mastfoot,
+  .cover-container {
+    width: 700px;
+  }
 }
-
-
