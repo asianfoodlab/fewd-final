@@ -1,8 +1,37 @@
 <!doctype HTML>
 <html>
 <head>
-	<title>Travel Itinerary Builder</title>
-	<link rel="stylesheet" href="style.css" />
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+	<title>Adventure Together | Build Itinerary</title>
+
+<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap core CSS 
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+
+	<!-- Custom styles for this template -->
+    <link href="style.css" rel="stylesheet">
+
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
 	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	// <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
@@ -11,50 +40,84 @@
 	<!-- <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 	<script src="node_modules/oauth-signature/dist/oauth-signature.js"></script> -->
 </head>
-<body>
-	<div class="header">
-      	<div class="logo">
-          	<p>Logo</p>
-     	</div>
-      	<div class="topNav">
-          	<ul>
-	              <li><a href="index.html">Home</a></li>
-	              <li><a href="about.html">About</a></li>
-	              <li><a href="myitineraries.html">My Itineraries</a></li>
-	              <li><a href="signin.html">Sign In</a></li>
-          	</ul>
-      	</div>
+<body class="text">
+	  <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li class="active"><a href="index.html">Home</a></li>
+                  <li><a href="about.html">About</a></li>
+                  <li><a href="myitineraries.html">My Itineraries</a></li>
+                  <li><a href="signin.html">Sign In</a></li>
+                  <li><a href="signup.html"><button class="btn btn-primary btn-xs">Sign Up</button></a></li>
+                </ul>
+              </nav>
+             </div>
+            </div>
+          <!-- header and nav div -->
+
       	<div id="header">
-      		<h1>Plan your Trip</h1>
+      		<h1 class="heading-text bottom">Build An Itinerary</h1>
       	</div>
 	  	<div id="itineraryName">
-	  		<input type="text" size="30" placeholder="Enter a name for your new itinerary" required>
+	  		<input type="text" size="35" placeholder="Enter a name for your new itinerary" required>
 	  	</div>
-	</div> <!-- header and nav div -->
-	 
+	 	
+	
 	<div id="addItems">
 	  	<div id="addManualItem">
-	  		<h3>Manual Add</h3>
+	  		<h3 class="heading-text bottom">Manual Add</h3>
+	  		<form class="form-inline no-center">
 	  		<select id="itemType">
 			  <option value="Accommodation">Accommodation</option>
 			  <option value="Activity">Activity</option>
 			  <option value="Restaurant">Restaurant</option>
 			  <option value="Transportation">Transportation</option>
 			</select>
+			<label for="inputDescription" class="sr-only">Enter Description</label>
 	  		<input id="itemDescription" type="text" size="30" placeholder="Enter description" required>
+	  		<label for="inputAddress" class="sr-only">Enter Address</label>
 	  		<input id="itemAddress" type="text" size="30" placeholder="Enter address">
+	  		<label for="inputHours" class="sr-only">Enter Hours of Operation</label>
 	  		<input id="itemHours" type="text" size="30" placeholder="Enter hours of operation">
+	  		<label for="inputPrice" class="sr-only">Enter Price</label>
 	  		<input id="itemPrice" type="text" size="30" placeholder="Enter price">
-	    	<input id="addToPlanButton" type="button" value="Add to Plan"> 	 	
+	    	<button class="btn btn-primary btn-sm" type="submit">Add to Plan</button>
+	    	</form> 	 	
 	    </div>
 
 		<div id="addYelpItem">
-	  		<h3>Search Yelp</h3>
+	  		<h3 class="heading-text bottom">Search Yelp</h3>
+	  		<label for="inputSearchTerm" class="sr-only">Search Term</label>
 	  		<input id="searchTerm" type="text" size="80" placeholder="Search for activities, transportation, lodging, restaurants ..." required>
-	    	<input id="searchButton" type="button" size="30" value="Search">
+	  		<label for="searchButton" class="sr-only">Search Button</label>
+	    	<input id="searchButton" type="button" size="30" value="Search" class="btn btn-primary btn-sm">
 	  	</div> 
-
-	</div> <!-- addItemsdiv -->
+	</div>
+		<div class="mastfoot">
+            <div class="inner">
+            <div id="social-media">
+              <ul> 
+                <li><a href="http://facebook.com" target="_blank"><img src="images/social-facebook.svg" class="social-media-icon"></a></li> 
+                <li><a href="http://twitter.com" target="_blank"><img src="images/social-twitter.svg" class="social-media-icon"></a></li> 
+                <li><a href="http://tumblr.com" target="_blank"><img src="images/social-tumblr.svg" class="social-media-icon"></a></li>
+                <li><a href="http://pinterest.com" target="_blank"><img src="images/social-pinterest.svg" class="social-media-icon"></a></li> 
+                <li><a href="http://youtube.com" target="_blank"><img src="images/social-youtube.svg" class="social-media-icon"></a></li>
+              </ul>
+          </div>
+              <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://adventure-together.com">Adventure Together</a>.</p>
+        </div>
+      </div>
+	</div>
+    </div>
+    </div>
+	<!-- addItemsdiv -->
 
 	<div id="yelpSearchResults">
 		<p id="yelpSearchItem"></p>
@@ -249,7 +312,6 @@
 			// 	label.appendChild(checkbox);
 			// 	item.value = "";
 			// }; -->
-
       
 </body>
 </html>
