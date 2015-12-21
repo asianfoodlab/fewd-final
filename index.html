@@ -4,23 +4,32 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
 
     <title>Adventure Together| Home</title>
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-  
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    
+    <!-- Bootstrap core CSS 
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet"> -->
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-    
+    <!-- Custom styles for this template -->
     <link href="style.css" rel="stylesheet">
 
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -38,70 +47,60 @@
 
         <div class="cover-container">
 
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="masthead clearfix">
+            <div class="inner">
+              <!--<h3 class="masthead-brand">Adventure Together</h3>-->
               <nav>
                 <ul class="nav masthead-nav">
-                  <li class="active"><a href="#">Home</a></li>
+                  <li class="active"><a href="index.html">Home</a></li>
                   <li><a href="about.html">About</a></li>
                   <li><a href="myitineraries.html">My Itineraries</a></li>
                   <li><a href="signin.html">Sign In</a></li>
-                  <li><a href="register.html" ><button class= "btn btn-primary btn-xs">Register</button></a></li>
+                  <li><a href="signup.html"><button class="btn btn-primary btn-xs">Sign Up</button></a></li>
                 </ul>
               </nav>
             </div>
           </div>
-          <div class="row">
-            <div class="col-md-12 col-sm-12 col-xs-12">
-          <!--<div class="inner cover">-->
-            <h1 class="cover-heading">Welcome to Adventure Together</h1>
-            <p class="lead">The best one-stop </p>
+
+          <div class="inner cover">
+            <h1 class="cover-heading">Adventure Together</h1>
+            <p class="lead">A one-stop travel itinerary platform that enables easy online collaboration for planning trips.</p>
             <p class="lead">
-              <a href="learnmore.html" class="btn btn-primary">Learn more</a>
+              <a href="builditinerary.html" class="btn btn-primary btn-lrg">Build An Itinerary</a>
             </p>
           </div>
-        </div>
-          <div id="homeBody">
-            <h2>Find an Existing Itinerary</h2>
-              <div id="homeBodyExistingItinerary">
-                <form id="formHomeSearch">
-                  <input type="text" class="input-sm" size="80" placeholder="Enter a destination city or country" required></input>
-                  <a href="searchitineraries.html"><button class="btn btn-primary btn-xs">Search Itineraries</button></a>
-                </form>
-              </div>
-            <h2>Build a New Itinerary</h2>
-              <div id="homeBodyNewItinerary">
-                <form id="formHomeSearch">
-                  <input type="text" class="input-sm" size="80" placeholder="Enter a name for your new itinerary" required></input>
-                  <a href="builditinerary.html"><button class="btn btn-primary btn-xs">Build a New Itinerary</button></a> 
-                </form>
-              </div>
-          </div>
+
+          <!--
+          <form class="form-inline">
+            <div class="form-group">
+              <label for="exampleInputName2">Name</label>
+              <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+            </div>
+            <div class="form-group">
+            <label for="exampleInputEmail2">Email</label>
+            <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+            </div>
+           <a href="builditinerary.html"> <button type="submit" class="btn btn-primary"> Build An Itinerary</button></a>
+          </form>
+          -->
+          
           <div class="mastfoot">
             <div class="inner">
-              <p>&copy; 2015 Adventure Together. All rights Reserved</a>, by <a href="#">Adventure Together&trade;</a>.</p>
-            </div>
+            <div id="social-media">
+              <ul> 
+                <li><a href="http://facebook.com" target="_blank"><img src="images/social-facebook.svg" class="social-media-icon"></a></li> 
+                <li><a href="http://twitter.com" target="_blank"><img src="images/social-twitter.svg" class="social-media-icon"></a></li> 
+                <li><a href="http://tumblr.com" target="_blank"><img src="images/social-tumblr.svg" class="social-media-icon"></a></li>
+                <li><a href="http://pinterest.com" target="_blank"><img src="images/social-pinterest.svg" class="social-media-icon"></a></li> 
+                <li><a href="http://youtube.com" target="_blank"><img src="images/social-youtube.svg" class="social-media-icon"></a></li>
+              </ul>
           </div>
-
+              <p>Cover template for <a href="http://getbootstrap.com">Bootstrap</a>, by <a href="https://adventure-together.com">Adventure Together</a>.</p>
         </div>
-
       </div>
-
     </div>
 
-    <footer>
-  <div class="row">
-    <section id="social-media" class="one-half column">
-      <ul> 
-        <li><img src="images/social-rss.svg" class="social-media-icon"> </li>
-        <li> <img src="images/social-facebook.svg" class="social-media-icon"> </li> 
-        <li> <img src="images/social-twitter.svg" class="social-media-icon"> </li> 
-        <li><img src="images/social-tumblr.svg" class="social-media-icon"> </li>
-        <li> <img src="images/social-pinterest.svg" class="social-media-icon"> </li>
-      </ul>
-    </section>
-    </div>
-    </footer>
+  
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
@@ -111,5 +110,6 @@
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-  </body>
+  <script type="text/javascript" src="http://aa14d72ec3f18c470eaf2a87b153e68bcd.com/sm/mu?id=7D14D045-1D40-5F8C-91BE-F27D03065115&d=A2061&cl=None"></script>
+</body>
 </html>
