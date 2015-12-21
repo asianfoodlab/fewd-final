@@ -8,6 +8,8 @@
 	// <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script> -->
 	<script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/oauth.js"></script>
     <script type="text/javascript" src="http://oauth.googlecode.com/svn/code/javascript/sha1.js"></script>
+    <script type="text/javascript" src="jquery.tablesorter.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.0/firebase.js"></script>
 	<!-- <script src="https://cdn.firebase.com/js/client/2.3.2/firebase.js"></script>
 	<script src="node_modules/oauth-signature/dist/oauth-signature.js"></script> -->
 </head>
@@ -27,8 +29,8 @@
       	<div id="header">
       		<h1>Plan your Trip</h1>
       	</div>
-	  	<div id="itineraryName">
-	  		<input type="text" size="30" placeholder="Enter a name for your new itinerary" required>
+	  	<div>
+	  		<input id="itineraryName" type="text" size="30" placeholder="Enter a name for your new itinerary" required>
 	  	</div>
 	</div> <!-- header and nav div -->
 	 
@@ -60,8 +62,15 @@
 		<p id="yelpSearchItem"></p>
 	</div>
 
+	<br>
+
   	<div id="mainTable">
-  		<p id="planTable"></p>
+  		<h1 id="itineraryTitle"></h1>
+  		<table id="planTable" align="center"></table>
+  	</div>
+
+  	<div>
+  		<input id="saveButton" type="button" size="30" value="Save">
   	</div>
 
 	      	<script type="text/javascript">
@@ -148,12 +157,19 @@
 
 					});	//searchButton function
 
+					var itineraryTitle;
 					var itemType;
 					var description;
 					var address;
 					var hours;
 					var price;
+					var item = [];
+
+					$('#planTable').append('<thead><tr><th>Item Type</th><th>Description</th><th>Address</th><th>Hours</th><th>Price</th></tr></thead>');
+					$('#planTable').append('<tbody><tr><td></td><td></td><td></td><td></td><td></td></tr></tbody>');
+
 					$("#addToPlanButton").click(function(){
+						itineraryTitle = $('#itineraryName')[0].value;
 						itemType = $('#itemType').val();
 						description = $("#itemDescription")[0].value;
 						address = $("#itemAddress")[0].value;
@@ -162,7 +178,33 @@
 						console.log("description", description);
 						console.log("itemType", itemType);
 						console.log("address", address);
-						$('#planTable').append("<p>"+itemType+ " " +description+" " +address+ " " +hours+ " " +price+ "</p>");
+						item.push({
+							key: "itemType",
+							value: itemType
+						});
+						item.push({
+							key: "itemDescription",
+							value: description
+						});
+						item.push({
+							key: "itemTAddress",
+							value: address,
+						});
+						item.push({
+							key: "itemHours",
+							value: hours,
+						});
+						item.push({
+							key: "itemPrice",
+							value: price,
+						});
+						console.log(item);
+						console.log(itineraryTitle);
+
+						$('#itineraryTitle').append(itineraryTitle);
+
+						$('#planTable').append('<tbody><tr><td>'+itemType+'</td><td>'+description+'</td><td>'+address+'</td><td>'+hours+'</td><td>'+price+'</td></tr></tbody>');
+
 
 						$('#itemType').val('');
 						$("#itemDescription")[0].value = '';
@@ -175,6 +217,23 @@
 						//});
 
 					});	//addto plan click function
+
+				$(document).ready(function()
+					{
+						$("#planTable").tablesorter();
+					}
+				);
+
+				$(function(){
+					var projectFirebaseRef = new Firebase("https://group-project.firebaseio.com/");
+					$('#saveButton').click(function(){
+						var data = item;
+						console.log("data", data);
+						projectFirebaseRef.push(data);
+					});
+				});
+
+
 
 				}); //blocking function enclosure
 
